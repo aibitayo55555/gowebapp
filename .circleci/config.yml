@@ -23,7 +23,7 @@ jobs:
         - setup_remote_docker
         - run:
             name: Build image
-            command: docker build  $IMAGE_NAME .
+            command: docker build   .
         - run:
             name: Push image tag
             command: |
