@@ -23,12 +23,12 @@ jobs:
         - setup_remote_docker
         - run:
             name: Build image
-            command: docker build -t $IMAGE_NAME:$CIRCLE_TAG .
+            command: docker build  $IMAGE_NAME .
         - run:
             name: Push image tag
             command: |
               docker login quay.io --username $QUAY_USERNAME --password $QUAY_PASSWORD
-              docker tag $IMAGE_NAME:$TAG_NAME quay.io/$IMAGE_NAME:$TAG_NAME
+              docker tag $IMAGE_NAME:$TAG_NAME quay.io/$IMAGE_NAME:$CIRCLE_TAG
               docker push quay.io/$IMAGE_NAME:$CIRCLE_TAG
 workflows:
   version: 2.1
