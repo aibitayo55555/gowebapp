@@ -23,7 +23,7 @@ jobs:
         - setup_remote_docker
         - run:
             name: Build image
-            command: docker build -t $IMAGE_NAME:$TAG_NAME .
+            command: docker build -t $IMAGE_NAME:$CIRCLE_TAG .
         - run:
             name: Push image tag
             command: |
