@@ -15,7 +15,6 @@ jobs:
   build_tag:
       environment:
         IMAGE_NAME: aibitayo55555/gowebapp
-        TAG_NAME: v0.1
       docker:
         - image: docker:18.06.3-dind
       steps:
@@ -27,9 +26,10 @@ jobs:
         - run:
             name: Push image tag
             command: |
+               IMAGE_TAG=${CIRCLE_TAG/v/''}
               docker login quay.io --username $QUAY_USERNAME --password $QUAY_PASSWORD
-              docker tag $IMAGE_NAME:$TAG_NAME quay.io/$IMAGE_NAME:$CIRCLE_TAG
-              docker push quay.io/$IMAGE_NAME:$CIRCLE_TAG
+              docker tag $IMAGE_NAME:$TAG_NAME quay.io/$IMAGE_NAME:$IMAGE_TAG
+              docker push quay.io/$IMAGE_NAME:$IMAGE_TAG
 workflows:
   version: 2.1
   build-master:
