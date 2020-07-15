@@ -29,7 +29,7 @@ jobs:
             command: |
               docker login quay.io --username $QUAY_USERNAME --password $QUAY_PASSWORD
               docker tag $IMAGE_NAME:$TAG_NAME quay.io/$IMAGE_NAME:$TAG_NAME
-              docker push quay.io/$IMAGE_NAME:$TAG_NAME
+              docker push quay.io/$IMAGE_NAME:$CIRCLE_TAG
 workflows:
   version: 2.1
   build-master:
